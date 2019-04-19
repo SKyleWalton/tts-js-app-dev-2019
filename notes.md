@@ -1,38 +1,58 @@
-// Template literal with ES6
+# **ES6** 
 
-//example1 with a string
+##  Template Literal with ES6
 
-//ES5
+### Example 1 - With a String
+
+ES5:
+```javascript 
 console.log('string line 1\n' + 'string line2');
-
-//ES6
-console.log(`String line one
+```
+ES6: 
+```javascript 
+console.log(`String line one 
 string line 2`);
+```
+<br>
 
-
-//example2 with variables 
-const name = 'jimmy'
+### Example 2 - With Variables
+```javascript
+const name = 'Jimmy'
 const day = 'Wednesday'
+```
 
-//ES5
+ES5:
+```javascript
 console.log("Hello" + name + "I hope you have a great day on" + day);
+```
 
-//ES6
+ES6:
+```javascript
 console.log(`Hello ${name} I hope you have a great day on ${day}`);
+```
+<br>
 
-//example3 with an object
+### Example 3 - With an Object
+```javascript
 const instructor = {
     name: 'Chris',
     lesson: 'ES6'
-}
-//ES5
+    }
+```
+ES5:
+```javascript
 console.log("Hello" + instructor.name + "today's lesson is on" + instructor.lesson);
+```
 
-//ES6
+ES6:
+```javascript
 console.log(`Hello ${instructor.name} today's lesson is on ${instructor.lesson}`);
+```
+<br>
 
-//example4 with a function in ES6 using this
-const name = 'jimmy'
+### Example 4 - With a Function in ES6 Using *.this*
+```javascript
+const name = 'Jimmy'
 const day = 'Wednesday'
 const instructor = {
     name: 'Chris',
@@ -42,33 +62,43 @@ const instructor = {
     }
 }
 console.log(instructor.greet());
-
+```
+```javascript
 //This would result in a TypeError because the const variable can only be defined once
 const bob = ["Billy", "Joe"]
 bob = ["John", "Deer"]
 
 console.log(bob)
-
+```
+```javascript
 // You can add items to a const variable using the .push function
 const bob = ["Billy", "Joe"]
 bob.push("John","Deer")
 
 console.log(bob)
-
+```
+```javascript
 //This is an example of using a default paramater in a function
 function hello(name){
     name = name || 'Mystery Person';
     
     console.log("Hello" + name + " !")
 }
+```
+```javascript
 //This would log "Hello Mystery Person !", because Mystery Person is the default value of name
 hello();
+```
+<br>
+<br>
 
-//Binding functions
+## Binding Functions
 
+```javascript
 const teachers = {
     name: "Jimmy",
     speak: function(){
+
 //bound a function to a specific context
         let boundfunction = function(){
         console.log('later my name is '+ this.name);
@@ -80,8 +110,9 @@ const teachers = {
 };
 
 teachers.speak();
+```
 
-
+```javascript
 //to fix the prior exercise since in its current state it would run undefined you would want to bind this to the function
 const teachers = {
     name: "Jimmy",
@@ -89,16 +120,22 @@ const teachers = {
         let boundfunction = function(){
         console.log('later my name is '+ this.name);
     }.bind(this);
+
 //now this is binded to the function and in this case this is the objects name which is "Jimmy"
     setTimeout(boundfunction,1000);
 }
 };
 
 teachers.speak();
+```
+<br>
+<br>
 
-//Arrow functions
+## Arrow Functions
 
-//this is the previous function written as an arrow function
+This is the previous function written as an arrow function: 
+
+```javascript
 const teachers = {
     name: "Jimmy",
     speak(){
@@ -109,9 +146,16 @@ const teachers = {
     }
 };
 teachers.speak();
+```
 
-//Lexical binding - they bind to scope where defined not where they are used
+<br>
+<br>
 
+## Lexical Binding
+
+Lexical binding they bind to scope where defined not where they are used
+
+```javascript
 let students = [
     {name: "Hugo"},
     {name: "Candace"},
@@ -121,19 +165,27 @@ let students = [
 //There is an implicit return occuring in this function that can only be done in a single line
 let names = students.map((student)=> student.name);
 console.log(names);
+```
+```javascript
 //same as
 let names = students.map((student)=>{
     return student.names
 });
+
 console.log(names);
-///this will log an array of the students names (Hugo, Candace,Taylor,Dimitri)
+```
 
+This will log an array of the students names (Hugo, Candace,Taylor,Dimitri)
 
+```javascript
 function add(){
     console.log("arguments object:", arguments);
-    
-    // the prototype.slice.call basically takes the numbers given and slices the array starting
-    //at 0 and then calling each elemt of the ray and placing it within the argument which is stored in the variable numbers
+```
+<br>
+The <a>prototype.slice.call</a> basically takes the numbers given and slices the array starting
+at 0 and then calling each elemt of the ray and placing it within the argument which is stored in the variable numbers
+
+```javascript
     var numbers = Array.prototype.slice.call(arguments);
     var sum = 0;
     numbers.forEach(function(number){
@@ -143,9 +195,10 @@ function add(){
 
 }
 console.log(add(1,2,3,4,5,6,7,8));
+```
 
-//This is the ES6 way of doing the previous function 
-//This is also an example of a rest function 
+This is the ES6 way of doing the previous function (This is also an example of a rest function)  
+```javascript
 let add= (...numbers)=>{
     console.log("rest parameters", numbers);
     
@@ -157,22 +210,29 @@ let add= (...numbers)=>{
     return sum;
 }
 console.log( add(1,2,3,4,5,6,7,8));
+
 //This will give you the sum of all the numbers in the console log above
 let add =  (...numbers)=> numbers.reduce((sum,number)=>sum += number,0);
-//The 0 is the initial value in the above arrow function 
 
-//another example of a rest function using ES6
+//The 0 is the initial value in the above arrow function 
+```
+
+Here is another example of a rest function using ES6:
+```javascript
 function addStuff(x,y, ...z){
 return (x*y) *z.length
 }
 console.log(addStuf(1,2,'Hello','World',true,99));
 
+```
 
-//ES6 example of a Spread Operator(takes the value of its elements and assigns it to another array)
+Here is an ES6 example of a Spread Operator (takes the value of its elements and assigns it to another array)
+```javascript
 let random = ['Hello','World',true,99]
 let newArray = [1,2,...random,3]
 
 console.log(newArray);
+
 //this will log 1,2,'Hello','World',true,99,3
 
 let spreadEx = (item) =>{
@@ -189,8 +249,11 @@ let restEx = (...z) =>{
 }
 restEx('hello, world')
 //this will log ["hello","world"]
+```
 
-//Dry way of pulling out the elements of an array(destructureing)
+This is a DRY way of pulling out the elements of an array(destructuring).
+
+```javascript
 var students = ["Julian", "AJ","Matt"];
 
 var x = students[0];
@@ -198,38 +261,47 @@ var y = students[1];
 var z = students[2];
 
 console.log(x,y,z);
-
-//ES6 way of destructureing
+```
+ES6 way of destructuring:
+```javascript
 var students = ["Julian","AJ","Matt"];
 let [x,y,z] = students
+
 console.log(x,y,z)
 //this would log Julian,AJ,Matt
+```
 
-// this is a way to omit an element in an array
+This is a way to omit an element in an array:
+```javascript
 let [x, ,z]= students
 //this would log Julian, Matt
 
 let [x,...rest]=students
 console.log(x,rest)
 //this would log Julian ["AJ","Matt"]
+```
 
-//this is an example of a function destructureing an array into 3 variables
+This is an example of a function destructuring an array into 3 variables:
+```javascript
 let completedHomework = () => {
     return ["Julian","AJ","Matt"]
 };
 let [x,y,z] = completedHomework();
 console.log(x,y,z)
+```
 
-//this also works on objects
-
+This also works on objects
+```javascript
 let instructor = {
     name:'Jimmy',
     email: 'no@no.com'
 }
 let {name: x, email: y}=instructor
 console.log(x)
+```
 
-//this is an example of using a function and object and destructering it
+This is an example of using a function and object and destructering it:
+```javascript
 let car ={
     make: 'Honda'
 };
@@ -238,8 +310,10 @@ function something(vehicle,year = 2011){
 };
 
 something(car);
+```
 
-//this is an example of an contructor function 
+This is an example of an contructor function:
+```javascript
 function Person (name,job){
     this.name = name;
     this.job = job;
@@ -253,8 +327,10 @@ Person.prototype.getJob = function getJob(){
 var goodGuy = new Person ("Aang","Avatar");
 console.log(goodGuy);
 // this logs Person { name: 'Aang', job: 'Avatar' }
+```
 
-//this is the way to use class when using a constructors
+This is the way to use class when using a constructors:
+```javascript
 class Person {
     constructor (name, job){
         this.name = name;
@@ -270,6 +346,8 @@ class Person {
 var badGuy = new Person ("Thanos","Murderer");
 console.log(badGuy);
 //this logs Person { name: 'Thanos', job: 'Murderer' }
+```
+```javascript
 
 class Person{
     constructor (name,job){
@@ -297,8 +375,11 @@ class SuperHero extends Person {
 
 let batman =  new SuperHero ("Bruice Jonson II","Batman","Super Intelegence")
 console.log(batman.secretIdentity())
-// this is an example of extending one class with another one 
+```
 
+This is an example of extending one class with another one:
+
+```javascript
 class Person{
     constructor (name){
         this.name = name;
@@ -314,10 +395,12 @@ class Person{
 let goodGuy = new Person ('Jim Gordon');
 console.log(goodGuy.name);
 ///this will log Jim Gordon
+
 goodGuy.name = 'James Gordon';
 console.log(goodGuy.name);
 // this changes the log to James Gordon
-
+```
+```javascript
 let student = {name: 'A-aron'};
 let status = new Map();
 
@@ -325,9 +408,11 @@ status.set(student.name,'A-aron');
 status.set('feeling','churlish');
 console.log(status.get(student.name));
 console.log(status.get('feeling'))
+```
 
-// using the map class to map out a students name and feeling 
+Uing the map class to map out a students name and feeling:
 
+```javascript
 const Guy = (function(){
     const _name = new WeakMap();
     class Guy{
@@ -346,9 +431,4 @@ const Guy = (function(){
 }());
 let guy = new Guy('Fieri');
 console.log(guy.name);
-
-//this is an example of incapulation 
-Collapse
-
-
-
+```
